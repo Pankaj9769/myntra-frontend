@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.studio-superscript{
+  font-size: 9px;
+  position: absolute;
+  color: #e72744;
+  top:1.5rem;
+  right: -0.5rem;
+}
+
+.dash-1::before{
+  position: absolute;
+  content: '';
+  top: 50%;
+  left:10%;
+  width: 80%;
+  height: 1px;
+  border: 1px solid rgb(156 163 175);
+  border-style: dashed;
+  -webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
