@@ -16,7 +16,7 @@ export const products = [
     category: "Men",
     type: "tshirt",
     image: [
-      "../../src/assets/images/prod1.jpg",
+      "../assets/images/prod1.jpg",
       "../../src/assets/images/prod1_2.jpg",
     ],
     name: "U.S. Polo Assn.",
