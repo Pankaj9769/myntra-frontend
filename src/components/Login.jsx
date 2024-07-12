@@ -36,7 +36,7 @@ const Login = () => {
       );
 
       const data = await response.json();
-      console.log(data);
+      console.log("ATLAS" + data);
       if (response.ok) {
         toast.success("Logged In");
         dispatch(bagAction.addAll({ id: data.user.bag }));
