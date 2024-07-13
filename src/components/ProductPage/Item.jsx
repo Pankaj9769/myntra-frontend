@@ -24,6 +24,7 @@ const Item = ({ item }) => {
       onMouseLeave={handleOnMouseLeave}
     >
       <button className="cursor-pointer">
+        {console.log(item.image[0])}
         <img
           src={item.image[0]}
           className="relative h-72 w-full"
