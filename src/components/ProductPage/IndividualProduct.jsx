@@ -49,15 +49,15 @@ const IndividualProduct = () => {
         Home / {item.category} / {item.type} /
         <span className="font-bold"> {item.name}</span>
       </span>
-      <div className="flex flex-col lg:flex-row items-center lg:items-start h-max w-[100%]  gap-10 ml-3 mr-10 mt-6">
-        <div className="w-fit h-fit flex flex-row gap-2 overflow-hidden">
+      <div className="flex flex-col lg:flex-row items-center justify-between lg:items-start h-max w-[100%]  gap-14 ml-3 mr-10 mt-6">
+        <div className=" w-[70%] md:w-[60%] h-[20rem] md:h-fit  flex flex-row gap-3 overflow-y-auto md:overflow-hidden">
           <img
             src={item.image[0]}
-            className="w-[50%] h-[20rem]  md:w-[49%] lg:h-[28rem] hover:scale-105 transition-all"
+            className="w-[100%] h-[20rem]  md:w-[49%] lg:h-[28rem] md:hover:scale-105 transition-all"
           />
           <img
             src={item.image[1]}
-            className="w-[50%] h-[20rem]  lg:w-[49% ] lg:h-[28rem] hover:scale-105 transition-all"
+            className="w-[100%] h-[20rem]  md:w-[49%] lg:h-[28rem] md:hover:scale-105 transition-all"
           />
         </div>
 
@@ -107,7 +107,7 @@ const IndividualProduct = () => {
               ₹{item.orgPrice}
             </span>
             <span className="inline-block ml-2 text-[1.17rem] font-bold text-orange-400">
-              ({item.discount})
+              ({item.discount}% OFF)
             </span>
           </div>
           <span className="font-bold text-sm text-[#379777]">
