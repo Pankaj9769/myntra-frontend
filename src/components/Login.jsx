@@ -58,7 +58,7 @@ const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center p-3 bg-yellow-200 h-max subpixel-antialiased">
       <div className="w-[28%] flex flex-col items-center bg-white">
-        <img src="/src/assets/images/myntra-offer.jpg" alt="Myntra Offer" />
+        <img src="/images/myntra-offer.jpg" alt="Myntra Offer" />
         <span className="text-lg font-semibold text-gray-700 mt-2">Login</span>
         <form
           onSubmit={loginUser}

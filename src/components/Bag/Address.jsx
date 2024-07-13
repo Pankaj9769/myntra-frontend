@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import BagNavBar from "./BagNavBar";
 import BagPageSlider from "./BagPageSlider";
 import { useDispatch, useSelector } from "react-redux";
-import { products } from "../ProductPage/ProductsPage";
+// import { products } from "../ProductPage/ProductsPage";
 import { AddressAction } from "../../store/AddressSlice";
 import AddressModal from "./AddressModal";
 import { useNavigate } from "react-router";
@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 const Address = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const products = useSelector((state) => state.products.prod);
 
   const openModal = () => {
     setIsModalOpen(true);

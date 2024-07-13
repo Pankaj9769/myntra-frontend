@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { products } from "../ProductPage/ProductsPage.jsx";
+// import { products } from "../ProductPage/ProductsPage.jsx";
 import WishlistItem from "./WishlistItem.jsx";
 import { Context } from "../../store/Context.jsx";
 import { useNavigate } from "react-router-dom";
 
 const Wishlist = () => {
   const navigate = useNavigate();
+  const products = useSelector((state) => state.products.prod);
   const loggedIn = JSON.parse(localStorage.getItem("loggedIn"));
 
   const wishlist = useSelector((state) => state.wishlist.id);

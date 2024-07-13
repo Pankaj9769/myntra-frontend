@@ -73,7 +73,7 @@ const Header = () => {
     <>
       <nav className="w-full h-20 flex flex-row items-center justify-between xl:justify-normal gap-3 bg-white shadow-md">
         <img
-          src="../../src/assets/images/mnytra_logo.webp"
+          src="/images/mnytra_logo.webp"
           className="ml-11 w-16 h-12 hover:cursor-pointer"
           onClick={showAll}
         />
