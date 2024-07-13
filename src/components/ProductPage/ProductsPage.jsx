@@ -404,7 +404,7 @@ export const products = [
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
-  const prodList = useSelector((state) => state.products.prod);
+  const prodList = useSelector((state) => state.products.currProd);
   const status = useSelector((state) => state.products.status);
   // const error = useSelector((state) => state.products.error);
 

@@ -16,36 +16,41 @@ export const productSlice = createSlice({
   name: "products",
   initialState: {
     prod: [],
+    currProd: [],
+    status: "idle",
+    error: null,
   },
   reducers: {
     addAll: (state, action) => {
       state.prod = action.payload.products;
+      state.currProd = action.payload.products;
     },
-    filterMen: (state, action) => {
-      state.prod = state.prod.filter(
+    filterMen: (state) => {
+      state.currProd = state.prod.filter(
         (item) => item.category === "Men" || item.category === "Both"
       );
     },
-    filterWomen: (state, action) => {
-      state.prod = state.prod.filter(
+    filterWomen: (state) => {
+      state.currProd = state.prod.filter(
         (item) => item.category === "Women" || item.category === "Both"
       );
     },
-    filterKids: (state, action) => {
-      state.prod = state.prod.filter((item) => item.category === "Kids");
+    filterKids: (state) => {
+      state.currProd = state.prod.filter((item) => item.category === "Kids");
     },
-    filterHomeLiving: (state, action) => {
-      state.prod = state.prod.filter((item) => item.type === "Home&Living");
+    filterHomeLiving: (state) => {
+      state.currProd = state.prod.filter((item) => item.type === "Home&Living");
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchProducts.pending, (state, action) => {
+      .addCase(fetchProducts.pending, (state) => {
         state.status = "loading";
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.prod = action.payload.products;
+        state.currProd = action.payload.products;
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = "failed";
@@ -53,4 +58,5 @@ export const productSlice = createSlice({
       });
   },
 });
+
 export const productAction = productSlice.actions;
