@@ -1,7 +1,7 @@
 import "../../index.css";
 import BagPageSlider from "./BagPageSlider";
 import BagItem from "./BagItem";
-import { products } from "../ProductPage/ProductsPage";
+// import { products } from "../ProductPage/ProductsPage";
 import { useSelector } from "react-redux";
 import { useContext, useEffect, useState } from "react";
 import BagNavBar from "./BagNavBar";
@@ -10,7 +10,7 @@ import { Context } from "../../store/Context";
 
 const Bag = () => {
   const navigate = useNavigate();
-
+  const products = useSelector((state) => state.products.prod);
   const loggedIn = JSON.parse(localStorage.getItem("loggedIn"));
   const bag = useSelector((state) => state.bag.id);
 

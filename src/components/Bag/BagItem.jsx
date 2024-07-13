@@ -33,7 +33,9 @@ const BagItem = ({ item }) => {
 
   return (
     <div className="flex flex-col sm:flex-row w-[44%] sm:w-full border-gray-300 border-[1px] my-3 p-2 gap-3">
+      {/* {console.log(item.image[0])} */}
       <img
+        // src="/images/prod3.jpg"
         src={item.image[0]}
         className="h-40  cursor-pointer"
         onClick={gotoProduct}

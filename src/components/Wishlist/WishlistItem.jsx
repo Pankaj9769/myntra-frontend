@@ -44,7 +44,8 @@ const WishlistItem = ({ item }) => {
   return (
     <div className=" relative w-[14rem] h-max border-gray-200 border-[1px] subpixel-antialiased">
       <a className="cursor-pointer">
-        <img src={item.image[0]} className="relative h-72 w-full"></img>
+        <img src={"/images/prod1.jpg"} className="relative h-72 w-full"></img>
+        {/* <img src={item.image[0]} className="relative h-72 w-full"></img> */}
         <a
           className="absolute top-2 right-2 bg-white bg-opacity-70 rounded-full p-[0.6rem] hover:bg-opacity-50"
           onClick={removeItemFromWishlist}
