@@ -71,10 +71,10 @@ const Header = () => {
 
   return (
     <>
-      <nav className="w-full h-20 flex flex-row items-center justify-between xl:justify-normal gap-3 bg-white shadow-md">
+      <nav className="w-full h-20 flex flex-row items-center justify-around gap-3 bg-white shadow-md">
         <img
           src="/images/mnytra_logo.webp"
-          className="ml-11 w-16 h-12 hover:cursor-pointer"
+          className="ml-10 w-16 h-12 hover:cursor-pointer"
           onClick={showAll}
         />
 
@@ -116,20 +116,20 @@ const Header = () => {
           </ul>
         </div>
 
-        <div className="hidden md:flex flex-row ml-12">
+        <div className="hidden md:flex flex-row">
           <div className="bg-slate-100 h-10 px-2 py-2 rounded-l-md border-t-[1px] border-l-[1px] border-b-[1px] border-gray-300 text-gray-400 tracking-wide">
             Search
           </div>
           <input
             type="text"
-            className="px-3 py-2 w-72 h-10 border-t-[1px] border-r-[1px] border-b-[1px] mr-28 lg:mr-0 border-gray-300 rounded-r-md"
+            className="px-3 py-2 w-72 h-10 border-t-[1px] border-r-[1px] border-b-[1px] mr-0 border-gray-300 rounded-r-md"
             placeholder="Search for products, brands and more"
           />
         </div>
         <div className=" xl:hidden mr-5">
           <Hamburger onToggle={toggleRespMenu} />
         </div>
-        <div className="hidden xl:flex flex-row ml-10 gap-7 ">
+        <div className="hidden xl:flex flex-row  gap-7 ">
           <a
             className="flex flex-col items-center cursor-pointer"
             onClick={toggleMenu}
@@ -144,7 +144,7 @@ const Header = () => {
             <HeartIcon className="text-gray-700 w-5 h-5" />
             <span className="text-xs font-semibold">Wishlist</span>
           </Link>
-          <div className="relative">
+          <div className="relative mr-8">
             <Link
               to="/bag"
               className="flex flex-col items-center cursor-pointer"
@@ -186,7 +186,7 @@ const Header = () => {
             >
               <span className="text-md font-semibold tracking-wide">Bag</span>
             </Link>
-            <span className=" mx-auto w-11/12 border-b-[1px] border-gray-200"></span>
+            <span className=" mx-auto w-11/12 border-b-[1px] border-gray-700"></span>
           </ul>
 
           <ul className="flex flex-col items-center justify-center text-gray-700 mt-5">
