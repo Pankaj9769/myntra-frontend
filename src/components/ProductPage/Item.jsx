@@ -25,6 +25,7 @@ const Item = ({ item }) => {
     >
       <button className="cursor-pointer">
         <img
+          unoptimized={true}
           src={item.image[0]}
           className="relative h-72 w-full"
           onClick={gotoProduct}

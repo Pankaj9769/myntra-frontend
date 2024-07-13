@@ -1,22 +1,15 @@
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Item from "./Item";
-import { useEffect } from "react";
-
-const product_Name = "U.S. Polo Assn.";
-const product_Description = "Men Lightweight   T-shirt";
-const curr_Price = "489";
-const org_Price = "699";
-const discount = "30% OFF";
-const rating = "4.5";
-const reviews = "6k";
-
+import { fetchProducts } from "../../store/ProductSlice";
+import { ColorRing } from "react-loader-spinner";
 export const products = [
   {
     id: 0,
     category: "Men",
     type: "tshirt",
     image: [
-      "../assets/images/prod1.jpg",
+      "../../src/assets/images/prod1.jpg",
       "../../src/assets/images/prod1_2.jpg",
     ],
     name: "U.S. Polo Assn.",
@@ -410,7 +403,35 @@ export const products = [
 ];
 
 const ProductsPage = () => {
+  const dispatch = useDispatch();
   const prodList = useSelector((state) => state.products.prod);
+  const status = useSelector((state) => state.products.status);
+  // const error = useSelector((state) => state.products.error);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  if (status === "loading") {
+    return (
+      <div className="flex flex-row gap-2 text-lg font-semibold text-gray-600 items-center justify-center">
+        <ColorRing
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="color-ring-loading"
+          wrapperStyle={{}}
+          wrapperClass="color-ring-wrapper"
+          colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+        />
+        <span>Loading</span>
+      </div>
+    );
+  }
+
+  if (status === "failed") {
+    return <div>Error: {"Error"}</div>;
+  }
 
   return (
     <>
@@ -419,7 +440,7 @@ const ProductsPage = () => {
       </span>
       <div className="flex flex-row flex-wrap gap-10 items-center justify-center py-5 my-3">
         {prodList.map((product) => (
-          <Item item={product} />
+          <Item key={product.id} item={product} />
         ))}
       </div>
     </>

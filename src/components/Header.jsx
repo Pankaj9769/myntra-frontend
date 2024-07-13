@@ -5,7 +5,7 @@ import BurgerMenu from "./BurgerMenu";
 import { Sling as Hamburger } from "hamburger-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { productAction } from "../store/ProductSlice";
+import { fetchProducts, productAction } from "../store/ProductSlice";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -36,7 +36,8 @@ const Header = () => {
   };
 
   const showAll = () => {
-    dispatch(productAction.addAll());
+    // dispatch(productAction.addAll());
+    dispatch(fetchProducts());
     navigate("/");
   };
 
