@@ -6,16 +6,17 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Wishlist from "./components/Wishlist/Wishlist.jsx";
 import ProductsPage from "./components/ProductPage/ProductsPage.jsx";
 import { Provider } from "react-redux";
-import { store } from "./store/store.js";
 import IndividualProduct from "./components/ProductPage/IndividualProduct.jsx";
 import Bag from "./components/Bag/Bag.jsx";
 import Address from "./components/Bag/Address.jsx";
 import OrderPlacedAnimation from "./components/Bag/OrderPlacedAnimation.jsx";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Register from "./components/Register.jsx";
 import Login from "./components/Login.jsx";
 import { ContextProvider } from "./store/Context.jsx";
+import { store, persistor } from "./store/store.js";
+import { PersistGate } from "redux-persist/integration/react";
 
 const router = createBrowserRouter([
   {
@@ -60,23 +61,25 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <ContextProvider>
-      <React.StrictMode>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
+    <PersistGate loading={null} persistor={persistor}>
+      <ContextProvider>
+        <React.StrictMode>
+          <ToastContainer
+            position="bottom-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
 
-        <RouterProvider router={router} />
-      </React.StrictMode>
-    </ContextProvider>
+          <RouterProvider router={router} />
+        </React.StrictMode>
+      </ContextProvider>
+    </PersistGate>
   </Provider>
 );

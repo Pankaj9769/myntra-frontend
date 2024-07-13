@@ -35,7 +35,6 @@ const BagItem = ({ item }) => {
     <div className="flex flex-col sm:flex-row w-[44%] sm:w-full border-gray-300 border-[1px] my-3 p-2 gap-3">
       {/* {console.log(item.image[0])} */}
       <img
-        // src="/images/prod3.jpg"
         src={item.image[0]}
         className="h-40  cursor-pointer"
         onClick={gotoProduct}
@@ -70,7 +69,7 @@ const BagItem = ({ item }) => {
             ₹{item.orgPrice}
           </span>
           <span className="inline-block ml-2 text-sm font-semibold text-orange-400">
-            {item.discount}
+            ({item.discount}%OFF)
           </span>
         </div>
         <span className="text-xs text-gray-500">

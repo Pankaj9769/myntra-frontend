@@ -13,7 +13,17 @@ const Bag = () => {
   const products = useSelector((state) => state.products.prod);
   const loggedIn = JSON.parse(localStorage.getItem("loggedIn"));
   const bag = useSelector((state) => state.bag.id);
-
+  const [bagList, setBagList] = useState(null);
+  const user = {
+    name: "Pankaj Parihar",
+    address: {
+      street: "Flat No. 613, 6th floor, A wing, Navjivan CHS, Carter Rd no. 4",
+      locality: "Borivali East",
+      city: "Mumbai",
+      zip: 400066,
+      state: "Maharashtra",
+    },
+  };
   if (!loggedIn) {
     console.log("Bag->" + loggedIn);
     navigate("/login");
@@ -33,28 +43,20 @@ const Bag = () => {
     platformFee: 20,
     shippingFee: 0,
   };
-  const bagList = products.filter((item) => {
-    if (bag.includes(String(item.id))) {
-      prod.length++;
-      prod.totalMrp = prod.totalMrp + +item.orgPrice;
-      prod.discountMrp = prod.discountMrp + +item.orgPrice - +item.currPrice;
-      prod.shippingFee += 20;
-      return true;
-    }
-  });
-
-  const user = {
-    name: "Pankaj Parihar",
-    address: {
-      street: "Flat No. 613, 6th floor, A wing, Navjivan CHS, Carter Rd no. 4",
-      locality: "Borivali East",
-      city: "Mumbai",
-      zip: 400066,
-      state: "Maharashtra",
-    },
-  };
-
   useEffect(() => {
+    setBagList(
+      products.filter((item) => {
+        if (bag.includes(String(item.id))) {
+          prod.length++;
+          prod.totalMrp = prod.totalMrp + +item.orgPrice;
+          prod.discountMrp =
+            prod.discountMrp + +item.orgPrice - +item.currPrice;
+          prod.shippingFee += 20;
+          return true;
+        }
+      })
+    );
+
     setSummary({
       length: prod.length,
       totalMrp: prod.totalMrp,
@@ -98,9 +100,8 @@ const Bag = () => {
               </button>
             </div>
             <div className="flex flex-row flex-wrap justify-around">
-              {bagList.map((item) => (
-                <BagItem key={item.id} item={item} />
-              ))}
+              {bagList &&
+                bagList.map((item) => <BagItem key={item.id} item={item} />)}
             </div>
           </div>
 
