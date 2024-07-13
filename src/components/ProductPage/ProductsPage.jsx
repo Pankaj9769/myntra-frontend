@@ -406,7 +406,7 @@ const ProductsPage = () => {
   const dispatch = useDispatch();
   const prodList = useSelector((state) => state.products.currProd);
   const status = useSelector((state) => state.products.status);
-  // const error = useSelector((state) => state.products.error);
+  const error = useSelector((state) => state.products.error);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -430,7 +430,7 @@ const ProductsPage = () => {
   }
 
   if (status === "failed") {
-    return <div>Error: {"Error"}</div>;
+    return <div>Error: {error}</div>;
   }
 
   return (
