@@ -43,29 +43,6 @@ const IndividualProduct = () => {
     }
   };
 
-  // const addToBag = async () => {
-  //   dispatch(bagAction.addToBag(item.id));
-  //   console.log("ID--->", item.id);
-  //   try {
-  //     const response = await fetch(
-  //       `http://localhost:5000/user/bag/add/${item.id}`,
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
-  //     const data = await response.json();
-  //     console.log(`Errord: ${data}`);
-  //     if (response.ok) {
-  //       toast.success("Added Successfully!");
-  //     }
-  //   } catch (error) {
-  //     console.log(`Error: ${error}`);
-  //   }
-  // };
-
   return (
     <div className="subpixel-antialiased h-max p-5 flex flex-col">
       <span className="inline-block mt-2 ml-3 text-sm text-gray-600 capitalize">
