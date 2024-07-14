@@ -43,8 +43,8 @@ const Header = () => {
 
   const Women = () => {
     console.log("Hello");
-    dispatch(productAction.filterWomen());
     navigate("/");
+    dispatch(productAction.filterWomen());
   };
 
   const Kids = () => {

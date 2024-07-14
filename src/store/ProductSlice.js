@@ -36,6 +36,7 @@ export const productSlice = createSlice({
       state.currProd = state.prod.filter(
         (item) => item.category === "Women" || item.category === "Both"
       );
+      console.log("Filter women", state.currProd);
     },
     filterKids: (state) => {
       state.currProd = state.prod.filter((item) => item.category === "Kids");

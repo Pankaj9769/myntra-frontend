@@ -408,10 +408,6 @@ const ProductsPage = () => {
   const status = useSelector((state) => state.products.status);
   const error = useSelector((state) => state.products.error);
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
-
   if (status === "loading") {
     return (
       <div className="flex flex-row gap-2 text-lg font-semibold text-gray-600 items-center justify-center">
@@ -432,6 +428,8 @@ const ProductsPage = () => {
   if (status === "failed") {
     return <div>Error: {error}</div>;
   }
+
+  console.log([...prodList]);
 
   return (
     <>
