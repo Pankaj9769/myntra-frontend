@@ -47,7 +47,7 @@ const Register = () => {
 
   return (
     <div className="flex flex-col items-center justify-center p-3 bg-red-50 h-max subpixel-antialiased">
-      <div className="w-[28%] flex flex-col items-center bg-white border-[1px] border-gray-200 rounded-lg">
+      <div className="w-[80%] md:w-[28%] flex flex-col items-center bg-white border-[1px] border-gray-200 rounded-lg">
         <img src="images/myntra-offer-2.png" alt="Myntra Offer" />
         <span className="text-lg font-semibold text-gray-700 mt-2">Signup</span>
         <form
@@ -78,7 +78,7 @@ const Register = () => {
           />
           <button
             type="submit"
-            className="bg-red-500 px-14 py-2 rounded-sm my-2 text-white font-semibold hover:bg-red-600"
+            className="bg-red-500 w-[50%] py-2 rounded-sm my-2 text-white font-semibold hover:bg-red-600"
           >
             Register
           </button>
