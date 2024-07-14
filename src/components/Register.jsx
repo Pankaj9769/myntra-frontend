@@ -1,11 +1,12 @@
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Register = () => {
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
+  const navigate = useNavigate();
 
   const registerUser = async (event) => {
     event.preventDefault();
@@ -32,6 +33,7 @@ const Register = () => {
       console.log(data);
       if (response.ok) {
         toast.success("Registered Successfully");
+        navigate("/login");
         nameRef.current.value = "";
         emailRef.current.value = "";
         passwordRef.current.value = "";
@@ -44,9 +46,9 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-3 bg-yellow-200 h-max subpixel-antialiased">
-      <div className="w-[28%] flex flex-col items-center bg-white">
-        <img src="/src/assets/images/myntra-offer.jpg" alt="Myntra Offer" />
+    <div className="flex flex-col items-center justify-center p-3 bg-red-50 h-max subpixel-antialiased">
+      <div className="w-[28%] flex flex-col items-center bg-white border-[1px] border-gray-200 rounded-lg">
+        <img src="images/myntra-offer-2.png" alt="Myntra Offer" />
         <span className="text-lg font-semibold text-gray-700 mt-2">Signup</span>
         <form
           onSubmit={registerUser}

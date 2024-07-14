@@ -4,10 +4,12 @@ import Heart from "../../../src/assets/images/like.png";
 import { useDispatch, useSelector } from "react-redux";
 import { WishlistAction } from "../../store/WishlistSlice";
 import { Context } from "../../store/Context";
+import { toast } from "react-toastify";
 const AddToWishlistButton = ({ id }) => {
   const dispatch = useDispatch();
   let [addWishlist, setAddWishlist] = useState(false);
   const wishlist = useSelector((state) => state.wishlist.id);
+  const loggedIn = JSON.parse(localStorage.getItem("loggedIn"));
   const { token } = useContext(Context);
 
   useEffect(() => {
@@ -17,17 +19,21 @@ const AddToWishlistButton = ({ id }) => {
   }, []);
 
   const addToWishlist = async () => {
-    dispatch(WishlistAction.addToWishList(id));
-    const response = await fetch(
-      `https://myntra-clone-backend-eight.vercel.app/user/wishlist/add/${id}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    if (response.ok) setAddWishlist(true);
+    if (!loggedIn) {
+      return toast.error("Please login!");
+    } else {
+      dispatch(WishlistAction.addToWishList(id));
+      const response = await fetch(
+        `https://myntra-clone-backend-eight.vercel.app/user/wishlist/add/${id}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.ok) setAddWishlist(true);
+    }
   };
   return (
     <div className="absolute bottom-[4.7rem] left-0 w-full h-12  bg-opacity-75 z-20">

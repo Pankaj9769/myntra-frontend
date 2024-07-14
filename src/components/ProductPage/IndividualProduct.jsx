@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { GiShoppingBag } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { bagAction } from "../../store/bagSlice";
@@ -11,13 +11,19 @@ import { Context } from "../../store/Context";
 const IndividualProduct = () => {
   const location = useLocation();
   const { token } = useContext(Context);
+  const navigate = useNavigate();
+  const loggedIn = JSON.parse(localStorage.getItem("loggedIn"));
   const { item } = location.state;
   const bag = useSelector((state) => state.bag.id);
   console.log(item);
   const dispatch = useDispatch();
 
   const addToBag = async () => {
-    dispatch(bagAction.addToBag(item.id));
+    if (!loggedIn) {
+      return navigate("/login");
+    } else {
+      dispatch(bagAction.addToBag(item.id));
+    }
 
     try {
       const response = await fetch(
