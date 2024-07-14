@@ -15,7 +15,7 @@ const IndividualProduct = () => {
   const loggedIn = JSON.parse(localStorage.getItem("loggedIn"));
   const { item } = location.state;
   const bag = useSelector((state) => state.bag.id);
-  console.log(item);
+
   const dispatch = useDispatch();
 
   const addToBag = async () => {
@@ -123,88 +123,32 @@ const IndividualProduct = () => {
           {/* SIZE BUTTONS */}
           <div className="flex flex-col flex-wrap mt-5">
             <span className="text-[0.95rem] font-semibold">SELECT SIZE</span>
-            <ul class="flex flex-row gap-5 flex-wrap w-full mt-4">
-              <li>
-                <input
-                  type="radio"
-                  id="hosting-small"
-                  name="hosting"
-                  value="hosting-small"
-                  class="hidden peer"
-                  required
-                />
-                <label
-                  for="hosting-small"
-                  class="flex flex-col items-center justify-between px-5 py-1 font-semibold text-sm text-black border border-gray-400 hover:border-black rounded-full cursor-pointer peer-checked:border-red-600 peer-checked:text-red-600 "
-                >
-                  <span>S</span>
-                  <span className="inline-block text-xs font-light ">
-                    ₹{item.currPrice}
-                  </span>
-                </label>
-              </li>
-              <li>
-                <input
-                  type="radio"
-                  id="hosting-med"
-                  name="hosting"
-                  value="hosting-med"
-                  class="hidden peer"
-                  required
-                />
-                <label
-                  for="hosting-med"
-                  class="flex flex-col items-center justify-between px-5 py-1 font-semibold text-sm text-black border border-gray-400  hover:border-black rounded-full cursor-pointer peer-checked:border-red-600 peer-checked:text-red-600 "
-                >
-                  <span>M</span>
-                  <span className="inline-block text-xs font-light ">
-                    ₹{item.currPrice}
-                  </span>
-                </label>
-              </li>
-              <li>
-                <input
-                  type="radio"
-                  id="hosting-large"
-                  name="hosting"
-                  value="hosting-large"
-                  class="hidden peer"
-                  required
-                />
-                <label
-                  for="hosting-large"
-                  class="flex flex-col items-center justify-between px-5 py-1 font-semibold text-sm text-black border border-gray-400 hover:border-black rounded-full cursor-pointer peer-checked:border-red-600 peer-checked:text-red-600 "
-                >
-                  <span>L</span>
-                  <span className="inline-block text-xs font-light ">
-                    ₹{item.currPrice}
-                  </span>
-                </label>
-              </li>
-              <li>
-                <input
-                  type="radio"
-                  id="hosting-extralarge"
-                  name="hosting"
-                  value="hosting-extralarge"
-                  class="hidden peer"
-                  required
-                />
-                <label
-                  for="hosting-extralarge"
-                  class="flex flex-col items-center justify-between px-5 py-1 font-semibold text-sm text-black border border-gray-400 hover:border-black rounded-full cursor-pointer peer-checked:border-red-600 peer-checked:text-red-600 "
-                >
-                  <span>XL</span>
-                  <span className="inline-block text-xs font-light ">
-                    ₹{item.currPrice}
-                  </span>
-                </label>
-              </li>
+            <ul className="flex flex-row gap-5 flex-wrap w-full mt-4">
+              {item.size.map((size) => (
+                <li key={size}>
+                  <input
+                    type="radio"
+                    id={`hosting-${size}`}
+                    name="hosting"
+                    value={`hosting-${size}`}
+                    className="hidden peer"
+                    required
+                  />
+                  <label
+                    htmlFor={`hosting-${size}`}
+                    className="flex flex-col items-center justify-between px-5 py-1 font-semibold text-sm text-black border border-gray-400 hover:border-black rounded-full cursor-pointer peer-checked:border-red-600 peer-checked:text-red-600 "
+                  >
+                    <span>{size}</span>
+                    <span className="inline-block text-xs font-light ">
+                      ₹{item.currPrice}
+                    </span>
+                  </label>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* ADD TO BAG BUTTON */}
-
           {!bag.includes(String(item.id)) ? (
             <button
               className="uppercase bg-[#FF407D] rounded-md hover:bg-opacity-85 mt-5 w-fit px-12 py-3 flex flex-row justify-center items-center gap-2 font-semibold text-white"
