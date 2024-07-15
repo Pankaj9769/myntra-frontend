@@ -14,16 +14,10 @@ const Bag = () => {
   const loggedIn = JSON.parse(localStorage.getItem("loggedIn"));
   const bag = useSelector((state) => state.bag.id);
   const [bagList, setBagList] = useState(null);
-  const user = {
-    name: "Pankaj Parihar",
-    address: {
-      street: "Flat No. 613, 6th floor, A wing, Navjivan CHS, Carter Rd no. 4",
-      locality: "Borivali East",
-      city: "Mumbai",
-      zip: 400066,
-      state: "Maharashtra",
-    },
-  };
+  const { user } = useContext(Context);
+  const address = useSelector((state) => state.address.address);
+
+  console.log("user->", address);
   if (!loggedIn) {
     console.log("Bag->" + loggedIn);
     navigate("/login");
@@ -88,11 +82,11 @@ const Bag = () => {
                 <span className="text-sm font-normal text-gray-600">
                   Deliver to:{" "}
                   <span className="text-gray-700 font-semibold ">
-                    {user.name}, {user.address.zip}
+                    {}, {address[0].zip}
                   </span>
                 </span>
                 <span className="text-xs overflow-clip text-gray-700 mt-2 sm:mt-0">
-                  {user.address.street},{user.address.locality}
+                  {address[0].street},{address[0].locality}
                 </span>
               </div>
               <button className="uppercase text-xs font-semibold px-2 py-2 border-red-500 border-[1px] rounded-sm text-red-500 mt-2 sm:mt-0">

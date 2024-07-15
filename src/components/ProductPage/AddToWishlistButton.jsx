@@ -36,7 +36,7 @@ const AddToWishlistButton = ({ id }) => {
     }
   };
   return (
-    <div className="absolute bottom-[4.7rem] left-0 w-full h-12  bg-opacity-75 z-20">
+    <div className="absolute bottom-[4.7rem] left-0 w-full h-12  bg-opacity-75 z-10">
       <div className="h-full bg-white flex flex-row justify-center items-center">
         <button
           className={`flex flex-row justify-center gap-1 my-auto items-center px-10 py-1 ${

@@ -19,14 +19,14 @@ const Item = ({ item }) => {
 
   return (
     <div
-      className=" relative w-[13.5rem] h-max subpixel-antialiased hover:shadow-lg"
+      className=" relative w-[10rem] md:w-[13.5rem] h-max subpixel-antialiased hover:shadow-lg "
       onMouseEnter={handleOnMouseEnter}
       onMouseLeave={handleOnMouseLeave}
     >
       <button className="cursor-pointer">
         <img
           src={item.image[0]}
-          className="relative h-72 w-full"
+          className="relative h-[12rem] w-full md:h-72"
           onClick={gotoProduct}
         ></img>
         {wishlistButton && <AddToWishlistButton id={item.id} />}
@@ -57,7 +57,7 @@ const Item = ({ item }) => {
           {item.name}
         </span>
         <div onClick={gotoProduct} className="w-full overflow-clip">
-          <span className="block ml-2 text-md  text-gray-500 text-sm overflow-hidden ">
+          <span className="block h-4 md:h-full ml-2 text-md  text-gray-500 text-sm overflow-hidden">
             {item.description}
           </span>
           <span className="inline-block ml-2  font-semibold text-sm mb-2">

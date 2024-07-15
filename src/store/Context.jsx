@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { WishlistAction } from "./WishlistSlice";
 import { bagAction } from "./bagSlice";
+import { AddressAction } from "./AddressSlice";
 
 export const Context = createContext(null);
 
@@ -35,6 +36,11 @@ export const ContextProvider = ({ children }) => {
           setUser(data.findUser);
           dispatch(WishlistAction.addAll({ id: data.findUser.wishlist }));
           dispatch(bagAction.addAll({ id: data.findUser.bag }));
+          dispatch(
+            AddressAction.addAddress({
+              address: data.findUser.address,
+            })
+          );
         } else {
           logout();
           localStorage.setItem("loggedIn", false);
@@ -71,6 +77,7 @@ export const ContextProvider = ({ children }) => {
     localStorage.setItem("token", null);
     dispatch(bagAction.removeAll());
     dispatch(WishlistAction.removeAll());
+
     setLoggedIn(false);
     localStorage.setItem("loggedIn", false);
   }

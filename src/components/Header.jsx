@@ -164,7 +164,7 @@ const Header = () => {
         </div>
       )}
       {respMenu && (
-        <div className="absolute xl:hidden  top-24 w-screen h-full bg-white z-10 subpixel-antialiased">
+        <div className="absolute xl:hidden  top-20 w-screen h-max bg-white z-20 subpixel-antialiased shadow-lg">
           <ul className="flex flex-col items-center justify-center uppercase text-gray-700">
             <a className="flex flex-row items-center justify-center cursor-pointer hover:bg-gray-50 w-full py-2">
               <span className="text-md font-semibold tracking-wid e">
@@ -173,6 +173,9 @@ const Header = () => {
             </a>
             <Link
               to="/wishlist"
+              onClick={() => {
+                setRespMenu(false);
+              }}
               className="flex flex-row items-center justify-center cursor-pointer hover:bg-gray-50 w-full py-2"
             >
               <span className="text-md font-semibold tracking-wide">
@@ -181,11 +184,19 @@ const Header = () => {
             </Link>
             <Link
               to="/bag"
+              onClick={() => {
+                setRespMenu(false);
+              }}
               className="flex flex-row items-center justify-center cursor-pointer hover:bg-gray-50 w-full py-2"
             >
-              <span className="text-md font-semibold tracking-wide">Bag</span>
+              <span className="flex flex-row items-center gap-1 text-md font-semibold tracking-wide">
+                Bag
+                <div class="inline-flex items-center justify-center w-8 h-5 text-xs font-semibold text-white bg-red-500 rounded-full top-[-10px] end-[-10px]">
+                  {bag.length}
+                </div>
+              </span>
             </Link>
-            <span className=" mx-auto w-11/12 border-b-[1px] border-gray-700"></span>
+            <span className=" mx-auto w-11/12 border-b-[1px] border-gray-300"></span>
           </ul>
 
           <ul className="flex flex-col items-center justify-center text-gray-700 mt-5">
@@ -216,7 +227,7 @@ const Header = () => {
           <div className="w-full flex flex-col items-center mt-5">
             <Link
               to="/register"
-              className="inline-block w-fit px-4 py-[0.5rem] text-sm text-red-600 font-semibold mt-2 border-[1px] hover:border-red-600"
+              className="inline-block w-fit px-4 py-[0.5rem] text-sm text-red-600 font-semibold mt-2 mb-5 border-[1px] hover:border-red-600"
             >
               LOGIN / SIGNUP
             </Link>

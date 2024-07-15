@@ -6,6 +6,7 @@ import { bagAction } from "../store/bagSlice";
 import { WishlistAction } from "../store/WishlistSlice";
 
 import { Context } from "../store/Context";
+import { AddressAction } from "../store/AddressSlice";
 
 const Login = () => {
   const { token, putToken, putUser } = useContext(Context);
@@ -41,6 +42,7 @@ const Login = () => {
         toast.success("Logged In");
         dispatch(bagAction.addAll({ id: data.user.bag }));
         dispatch(WishlistAction.addAll({ id: data.user.wishlist }));
+        dispatch(AddressAction.addAddress({ address: data.user.address }));
         putUser(data.user);
         putToken(data.token);
 
