@@ -36,7 +36,6 @@ const Header = () => {
   };
 
   const showAll = () => {
-    // dispatch(productAction.addAll());
     dispatch(fetchProducts());
     navigate("/");
   };
@@ -74,7 +73,7 @@ const Header = () => {
       <nav className="w-full h-20 flex flex-row items-center justify-around gap-3 bg-white shadow-md">
         <img
           src="/images/mnytra_logo.webp"
-          className="ml-10 w-16 h-12 hover:cursor-pointer"
+          className=" ml-0 md:ml-10 w-16 h-12 hover:cursor-pointer"
           onClick={showAll}
         />
 
@@ -126,7 +125,7 @@ const Header = () => {
             placeholder="Search for products, brands and more"
           />
         </div>
-        <div className=" xl:hidden mr-5">
+        <div className=" xl:hidden mr-0 md:mr-5">
           <Hamburger onToggle={toggleRespMenu} />
         </div>
         <div className="hidden xl:flex flex-row  gap-7 ">
