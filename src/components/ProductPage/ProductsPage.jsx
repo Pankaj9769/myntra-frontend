@@ -436,7 +436,7 @@ const ProductsPage = () => {
       <span className="inline-block mt-7 ml-8 text-sm text-gray-600 capitalize text-md font-bold">
         Home / Products
       </span>
-      <div className="flex flex-row flex-wrap gap-3 md:gap-10 items-center justify-center py-5 my-3">
+      <div className="flex flex-row flex-wrap gap-5 md:gap-10 items-center justify-center py-5 my-3">
         {prodList.map((product) => (
           <Item key={product.id} item={product} />
         ))}
