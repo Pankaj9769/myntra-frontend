@@ -34,12 +34,10 @@ const Address = () => {
   const selectedIndex = useRef(null);
   const navigate = useNavigate();
   const onContinue = () => {
-    // console.log(selectedIndex.current);
     if (selectedIndex.current === null) {
       toast.error("Please select an Address");
     } else {
       navigate("/orderPlaced");
-      console.log(selectedIndex === null, selectedIndex);
     }
   };
 
@@ -74,7 +72,6 @@ const Address = () => {
 
   const handleAddressSelect = (index) => {
     selectedIndex.current = index;
-    console.log(selectedIndex.current);
   };
 
   const removeAddress = (index) => {

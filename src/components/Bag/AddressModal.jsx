@@ -22,7 +22,7 @@ const AddressModal = ({ isOpen, onClose }) => {
       state: state.current.value,
       zip: zipcode.current.value,
     };
-    console.log(addr);
+
     dispatch(AddressAction.addAddress(addr));
   };
 
