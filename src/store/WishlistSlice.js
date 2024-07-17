@@ -5,7 +5,6 @@ export const WishlistSlice = createSlice({
   initialState: { id: [] },
   reducers: {
     removeAll: (state, action) => {
-      console.log("Wishlist->", state.id);
       state.id.length = 0;
     },
     addAll: (state, action) => {

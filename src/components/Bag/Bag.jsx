@@ -19,7 +19,6 @@ const Bag = () => {
 
   console.log("user->", address);
   if (!loggedIn) {
-    console.log("Bag->" + loggedIn);
     navigate("/login");
   }
   let [bagSummary, setSummary] = useState({
@@ -64,9 +63,7 @@ const Bag = () => {
     navigate("/address");
   };
 
-  useEffect(() => {
-    console.log("Bag Summary", bagSummary);
-  }, [bagSummary]);
+  useEffect(() => {}, [bagSummary]);
 
   return (
     <>

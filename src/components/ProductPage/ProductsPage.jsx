@@ -429,8 +429,6 @@ const ProductsPage = () => {
     return <div>Error: {error}</div>;
   }
 
-  console.log([...prodList]);
-
   return (
     <>
       <span className="inline-block mt-7 ml-8 text-sm text-gray-600 capitalize text-md font-bold">

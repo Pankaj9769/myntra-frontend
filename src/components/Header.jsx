@@ -30,7 +30,6 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const Men = () => {
-    console.log("Hello");
     dispatch(productAction.filterMen());
     navigate("/");
   };
@@ -41,18 +40,15 @@ const Header = () => {
   };
 
   const Women = () => {
-    console.log("Hello");
     navigate("/");
     dispatch(productAction.filterWomen());
   };
 
   const Kids = () => {
-    console.log("Hello");
     dispatch(productAction.filterKids());
     navigate("/");
   };
   const HomeLiving = () => {
-    console.log("Hello");
     dispatch(productAction.filterHomeLiving());
     navigate("/");
   };

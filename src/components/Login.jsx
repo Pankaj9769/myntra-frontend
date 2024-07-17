@@ -37,12 +37,17 @@ const Login = () => {
       );
 
       const data = await response.json();
-      console.log("ATLAS" + data);
+
       if (response.ok) {
         toast.success("Logged In");
         dispatch(bagAction.addAll({ id: data.user.bag }));
         dispatch(WishlistAction.addAll({ id: data.user.wishlist }));
-        dispatch(AddressAction.addAddress({ address: data.user.address }));
+        dispatch(
+          AddressAction.addAddress({
+            address: data.user.address,
+            name: data.user.name,
+          })
+        );
         putUser(data.user);
         putToken(data.token);
 

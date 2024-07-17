@@ -14,14 +14,11 @@ const Wishlist = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!loggedIn) {
-      console.log("WISH->", loggedIn);
       navigate("/login");
     }
   }, [loggedIn, navigate]);
 
-  useEffect(() => {
-    console.log("Wishlist updated:", wishlist);
-  }, [wishlist]);
+  useEffect(() => {}, [wishlist]);
 
   const newList = products.filter((product) =>
     wishlist.includes(String(product.id))

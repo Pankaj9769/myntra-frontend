@@ -9,6 +9,8 @@ export const AddressSlice = createSlice({
   reducers: {
     addAddress: (state, action) => {
       state.address.push(action.payload.address);
+      state.name =
+        action.payload.name === undefined ? state.name : action.payload.name;
     },
     removeAddress: (state, action) => {
       state.address.splice(action.payload, 1);

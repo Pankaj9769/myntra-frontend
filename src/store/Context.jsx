@@ -14,7 +14,7 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       setLoggedIn(true);
-      console.log("Context" + loggedIn);
+
       localStorage.setItem("loggedIn", true);
     }
 
@@ -39,6 +39,7 @@ export const ContextProvider = ({ children }) => {
           dispatch(
             AddressAction.addAddress({
               address: data.findUser.address,
+              name: data.findUser.name,
             })
           );
         } else {
@@ -49,12 +50,6 @@ export const ContextProvider = ({ children }) => {
     };
     checkUser();
   }, []);
-
-  useEffect(() => {
-    if (user) {
-      console.log("USERNAMECONTEXT", user.name);
-    }
-  }, [user]);
 
   const putUser = (userInfo) => {
     setUser(userInfo);
