@@ -47,7 +47,7 @@ const Login = () => {
         dispatch(bagAction.addAll({ id: data.user.bag }));
         dispatch(WishlistAction.addAll({ id: data.user.wishlist }));
         console.log("data.user->" + data.user);
-        dispatch(AddressAction.addAddress([data.user.address]));
+        dispatch(AddressAction.addAddress(data.user.address));
         putUser(data.user);
         putToken(data.token);
 

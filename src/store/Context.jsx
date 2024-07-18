@@ -66,7 +66,7 @@ export const ContextProvider = ({ children }) => {
     localStorage.setItem("token", null);
     dispatch(bagAction.removeAll());
     dispatch(WishlistAction.removeAll());
-
+    dispatch(AddressAction.removeAll());
     setLoggedIn(false);
     localStorage.setItem("loggedIn", false);
   }

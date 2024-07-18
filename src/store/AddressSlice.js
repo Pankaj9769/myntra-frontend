@@ -18,6 +18,9 @@ export const AddressSlice = createSlice({
     removeAddress: (state, action) => {
       state.address.splice(action.payload, 1);
     },
+    removeAll: (state, action) => {
+      state.address.length = 0;
+    },
   },
 });
 

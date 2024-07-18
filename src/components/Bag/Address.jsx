@@ -91,7 +91,7 @@ const Address = () => {
 
       const data = await response.json();
       if (response.ok) {
-        toast.error("Address Removed");
+        toast.success("Address Removed");
         dispatch(AddressAction.removeAddress(index));
       }
     } catch (error) {}
