@@ -3,14 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 export const AddressSlice = createSlice({
   name: "address",
   initialState: {
-    name: "",
     address: [],
   },
   reducers: {
     addAddress: (state, action) => {
-      state.address.push(action.payload.address);
-      state.name =
-        action.payload.name === undefined ? state.name : action.payload.name;
+      const newAddresses = action.payload;
+
+      if (Array.isArray(newAddresses)) {
+        newAddresses.forEach((addr) => state.address.push(addr));
+      } else {
+        console.error("Payload is not an array:", newAddresses);
+      }
     },
     removeAddress: (state, action) => {
       state.address.splice(action.payload, 1);

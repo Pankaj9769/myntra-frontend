@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import BagNavBar from "./BagNavBar";
 import BagPageSlider from "./BagPageSlider";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,10 +7,12 @@ import { AddressAction } from "../../store/AddressSlice";
 import AddressModal from "./AddressModal";
 import { useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
+import { Context } from "../../store/Context";
 
 const Address = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const products = useSelector((state) => state.products.prod);
+  const { token } = useContext(Context);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -19,6 +21,7 @@ const Address = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
   const dispatch = useDispatch();
   const bag = useSelector((state) => state.bag.id);
   const name = "Pankaj Parihar";
@@ -74,8 +77,24 @@ const Address = () => {
     selectedIndex.current = index;
   };
 
-  const removeAddress = (index) => {
-    dispatch(AddressAction.removeAddress(index));
+  const removeAddress = async (index) => {
+    try {
+      const response = await fetch(
+        `https://myntra-clone-backend-eight.vercel.app/user/address/remove/${index}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+      if (response.ok) {
+        toast.error("Address Removed");
+        dispatch(AddressAction.removeAddress(index));
+      }
+    } catch (error) {}
   };
 
   return (

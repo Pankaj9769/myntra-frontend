@@ -1,12 +1,15 @@
 // src/components/Modal.js
 import { Cross1Icon } from "@radix-ui/react-icons";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AddressAction } from "../../store/AddressSlice";
 import { useDispatch } from "react-redux";
+import { Context } from "../../store/Context";
+import { toast } from "react-toastify";
 
 const AddressModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
+  const { token } = useContext(Context);
   const dispatch = useDispatch();
   const street = useRef();
   const locality = useRef();
@@ -14,7 +17,7 @@ const AddressModal = ({ isOpen, onClose }) => {
   const state = useRef();
   const zipcode = useRef();
 
-  const appendAddress = () => {
+  const appendAddress = async () => {
     const addr = {
       street: street.current.value,
       locality: locality.current.value,
@@ -23,18 +26,45 @@ const AddressModal = ({ isOpen, onClose }) => {
       zip: zipcode.current.value,
     };
 
-    dispatch(AddressAction.addAddress(addr));
+    console.log("addr=", addr);
+
+    try {
+      const response = await fetch(
+        "https://myntra-clone-backend-eight.vercel.app/user/address/add",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(addr),
+        }
+      );
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log("daaatatata", response);
+        const newAddr = [addr];
+        dispatch(AddressAction.addAddress(newAddr));
+
+        toast.success("Address added successfully");
+      } else {
+        toast.error("Failed to add address");
+      }
+    } catch (error) {
+      toast.error("Error adding address:", error);
+    }
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-10">
       <div className="bg-white p-6 rounded shadow-lg w-1/3">
         <div className="flex flex-row justify-between items-center border-b-[1px] border-gray-300 pb-4">
           <span className="text-sm uppercase font-bold text-gray-600">
             Add New Address
           </span>
           <Cross1Icon
-            className="w-8 h-8 rounded-full p-1 hover:bg-gray-50 text-gray-500"
+            className="w-8 h-8 rounded-full p-1 hover:bg-gray-50 text-gray-500 cursor-pointer"
             onClick={onClose}
           />
         </div>

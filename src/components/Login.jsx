@@ -39,15 +39,15 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
+        // console.log("data", data.user.address[0].zip);
+        data.user.address.forEach((addr) => {
+          console.log("addr->", addr);
+        });
         toast.success("Logged In");
         dispatch(bagAction.addAll({ id: data.user.bag }));
         dispatch(WishlistAction.addAll({ id: data.user.wishlist }));
-        dispatch(
-          AddressAction.addAddress({
-            address: data.user.address,
-            name: data.user.name,
-          })
-        );
+        console.log("data.user->" + data.user);
+        dispatch(AddressAction.addAddress([data.user.address]));
         putUser(data.user);
         putToken(data.token);
 

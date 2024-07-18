@@ -36,12 +36,6 @@ export const ContextProvider = ({ children }) => {
           setUser(data.findUser);
           dispatch(WishlistAction.addAll({ id: data.findUser.wishlist }));
           dispatch(bagAction.addAll({ id: data.findUser.bag }));
-          dispatch(
-            AddressAction.addAddress({
-              address: data.findUser.address,
-              name: data.findUser.name,
-            })
-          );
         } else {
           logout();
           localStorage.setItem("loggedIn", false);

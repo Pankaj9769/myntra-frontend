@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import BagNavBar from "./BagNavBar";
 import { useNavigate } from "react-router";
 import { Context } from "../../store/Context";
+import AddressModal from "./AddressModal";
 
 const Bag = () => {
   const navigate = useNavigate();
@@ -16,6 +17,18 @@ const Bag = () => {
   const [bagList, setBagList] = useState(null);
   const { user } = useContext(Context);
   const address = useSelector((state) => state.address.address);
+  const name = useSelector((state) => state.address.name);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  console.log("COntext address-.", address);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   console.log("user->", address);
   if (!loggedIn) {
@@ -68,28 +81,46 @@ const Bag = () => {
   return (
     <>
       <BagNavBar page={1} />
+      <AddressModal isOpen={isModalOpen} onClose={closeModal} />
       <div className=" h-max w-[99%] ml-2 flex flex-col items-center subpixel-antialiased">
         <div className="flex md:hidden flex-row uppercase text-[0.8rem] font-[500] tracking-[3px]  text-gray-400 mt-3">
           <BagPageSlider page={1} />
         </div>
         <div className="flex flex-col-reverse sm:flex-row w-full  gap-8 items-center sm:items-start justify-center mt-10">
           <div className="w-[100%] sm:w-[50%] flex flex-col items-center sm:items-stretch">
-            <div className="border-[1px] border-gray-200 h-max bg-red-50 rounded-md py-4 px-2 flex flex-col sm:flex-row justify-around items-center">
-              <div className="flex flex-col">
-                <span className="text-sm font-normal text-gray-600">
-                  Deliver to:{" "}
-                  <span className="text-gray-700 font-semibold ">
-                    {}, {address[0].zip}
+            {address.length !== 0 ? (
+              <div className="border-[1px] border-gray-200 h-max bg-red-50 rounded-md py-4 px-2 flex flex-col sm:flex-row justify-between items-center">
+                <div className="flex flex-col">
+                  <span className="text-sm font-normal text-gray-600">
+                    Deliver to:{" "}
+                    <span className="text-gray-700 font-semibold ">
+                      {console.log("address-> " + address[0].length)} {name},{" "}
+                      {address[0].zip}
+                    </span>
                   </span>
-                </span>
-                <span className="text-xs overflow-clip text-gray-700 mt-2 sm:mt-0">
-                  {address[0].street},{address[0].locality}
-                </span>
+                  <span className="text-xs overflow-clip text-gray-700 mt-2 sm:mt-0">
+                    {address[0].street},{address[0].locality}
+                  </span>
+                </div>
+                <button className="uppercase text-xs font-semibold px-2 py-2 border-red-500 border-[1px] rounded-sm text-red-500 mt-2 sm:mt-0">
+                  change address
+                </button>
               </div>
-              <button className="uppercase text-xs font-semibold px-2 py-2 border-red-500 border-[1px] rounded-sm text-red-500 mt-2 sm:mt-0">
-                change address
-              </button>
-            </div>
+            ) : (
+              <div className="border-[1px] border-gray-200 h-max bg-red-50 rounded-md py-4 px-2 flex flex-col sm:flex-row justify-between items-center">
+                <div className="flex flex-col">
+                  <span className="text-sm font-normal text-gray-700">
+                    No Address Found
+                  </span>
+                </div>
+                <button
+                  className="uppercase text-xs font-semibold px-2 py-2 border-red-500 border-[1px] rounded-sm text-red-500 mt-2 sm:mt-0"
+                  onClick={openModal}
+                >
+                  Add address
+                </button>
+              </div>
+            )}
             <div className="flex flex-row flex-wrap justify-around">
               {bagList &&
                 bagList.map((item) => <BagItem key={item.id} item={item} />)}
