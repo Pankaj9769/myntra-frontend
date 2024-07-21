@@ -8,6 +8,8 @@ import AddressModal from "./AddressModal";
 import { useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 import { Context } from "../../store/Context";
+import { OrderAction } from "../../store/OrderSlice";
+import { bagAction } from "../../store/bagSlice";
 
 const Address = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,11 +38,68 @@ const Address = () => {
 
   const selectedIndex = useRef(null);
   const navigate = useNavigate();
-  const onContinue = () => {
+
+  const onContinue = async () => {
     if (selectedIndex.current === null) {
       toast.error("Please select an Address");
     } else {
-      navigate("/orderPlaced");
+      console.log("Selected Indec" + userAddress[selectedIndex.current]);
+      const order = [];
+      order.length = 0;
+      products.forEach((element) => {
+        if (bag.includes(String(element.id))) {
+          order.push({
+            id: element.id,
+            image: element.image[0],
+            name: element.name,
+            description: element.description,
+            address: userAddress[selectedIndex.current],
+            date: Date.now(),
+
+            rating: {
+              star: element.rating.star,
+              by: element.rating.by,
+            },
+          });
+        }
+      });
+      try {
+        console.log("token->", token);
+
+        const response = await fetch(
+          "https://myntra-frontend-tau.vercel.app/user/order/add",
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(order),
+          }
+        );
+        if (response.ok) {
+          const resp = await fetch(
+            "https://myntra-frontend-tau.vercel.app/user/bag/remove/all",
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          if (resp.ok) {
+            dispatch(OrderAction.addOrder(order));
+            // dispatch(OrderAction.removeOrder());
+            dispatch(bagAction.removeAll());
+            navigate("/order");
+          }
+        }
+      } catch (error) {
+        toast.error(
+          "An error occured while placing the order! Please try again"
+        );
+      }
     }
   };
 

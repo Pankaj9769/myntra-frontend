@@ -8,6 +8,7 @@ export const bagSlice = createSlice({
   reducers: {
     removeAll: (state, action) => {
       state.id.length = 0;
+      console.log(state.id);
     },
     addAll: (state, action) => {
       state.id = [...action.payload.id];

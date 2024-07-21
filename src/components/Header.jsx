@@ -3,7 +3,7 @@ import { HeartIcon, PersonIcon } from "@radix-ui/react-icons";
 import { useState, useEffect, useRef } from "react";
 import BurgerMenu from "./BurgerMenu";
 import { Sling as Hamburger } from "hamburger-react";
-import { Link, useNavigate } from "react-router-dom";
+import { json, Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, productAction } from "../store/ProductSlice";
 
@@ -12,7 +12,7 @@ const Header = () => {
   const menuRef = useRef(null);
   const [respMenu, setRespMenu] = useState(false);
   const bag = useSelector((state) => state.bag.id);
-
+  const profileIcon = useRef(null);
   const toggleRespMenu = () => {
     setRespMenu(!respMenu);
   };
@@ -22,7 +22,11 @@ const Header = () => {
   };
 
   const handleClickOutside = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
+    if (
+      menuRef.current &&
+      !menuRef.current.contains(event.target) &&
+      !profileIcon.current.contains(event.target)
+    ) {
       setMenuOpen(false);
     }
   };
@@ -66,7 +70,7 @@ const Header = () => {
 
   return (
     <>
-      <nav className="w-full h-20 flex flex-row items-center justify-around gap-3 bg-white shadow-md">
+      <nav className=" w-full h-20 flex flex-row items-center justify-around gap-3 bg-white shadow-md ">
         <img
           src="/images/mnytra_logo.webp"
           className=" ml-0 md:ml-10 w-16 h-12 hover:cursor-pointer"
@@ -128,6 +132,7 @@ const Header = () => {
           <a
             className="flex flex-col items-center cursor-pointer"
             onClick={toggleMenu}
+            ref={profileIcon}
           >
             <PersonIcon className="text-gray-700 w-5 h-5" />
             <span className="text-xs font-semibold">Profile</span>
@@ -159,7 +164,7 @@ const Header = () => {
           <BurgerMenu />
         </div>
       )}
-      {respMenu && (
+      {!respMenu ? null : (
         <div className="absolute xl:hidden  top-20 w-screen h-max bg-white z-20 subpixel-antialiased shadow-lg">
           <ul className="flex flex-col items-center justify-center uppercase text-gray-700">
             <a className="flex flex-row items-center justify-center cursor-pointer hover:bg-gray-50 w-full py-2">

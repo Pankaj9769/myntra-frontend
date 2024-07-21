@@ -20,6 +20,7 @@ import { WishlistSlice } from "./WishlistSlice";
 import { bagSlice } from "./bagSlice";
 import { productSlice } from "./ProductSlice";
 import { AddressSlice } from "./AddressSlice";
+import { OrderSlice } from "./OrderSlice";
 
 const persistConfig = {
   key: "root",
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   bag: bagSlice.reducer,
   products: productSlice.reducer,
   address: AddressSlice.reducer,
+  order: OrderSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

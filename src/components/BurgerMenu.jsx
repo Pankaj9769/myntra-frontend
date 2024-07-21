@@ -41,7 +41,7 @@ const BurgerMenu = () => {
           </>
         )}
         <div className="flex flex-col items-start justify-start w-full text-gray-500 text-[0.9rem] tracking-tight mt-3 cursor-pointer subpixel-antialiased gap-1">
-          <Link to="/orders">Orders</Link>
+          <Link to="/order">Orders</Link>
           <Link to="/wishlist">Wishlist</Link>
           <Link to="/gift-cards">Gift Cards</Link>
           <Link to="/contact-us">Contact Us</Link>

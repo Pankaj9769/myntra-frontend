@@ -7,6 +7,7 @@ import { WishlistAction } from "../store/WishlistSlice";
 
 import { Context } from "../store/Context";
 import { AddressAction } from "../store/AddressSlice";
+import { OrderAction } from "../store/OrderSlice";
 
 const Login = () => {
   const { token, putToken, putUser } = useContext(Context);
@@ -48,6 +49,7 @@ const Login = () => {
         dispatch(WishlistAction.addAll({ id: data.user.wishlist }));
         console.log("data.user->" + data.user);
         dispatch(AddressAction.addAddress(data.user.address));
+        dispatch(OrderAction.addInitialOrder({ orders: data.user.orders }));
         putUser(data.user);
         putToken(data.token);
 

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { WishlistAction } from "./WishlistSlice";
 import { bagAction } from "./bagSlice";
 import { AddressAction } from "./AddressSlice";
+import { OrderAction } from "./OrderSlice";
 
 export const Context = createContext(null);
 
@@ -36,6 +37,9 @@ export const ContextProvider = ({ children }) => {
           setUser(data.findUser);
           dispatch(WishlistAction.addAll({ id: data.findUser.wishlist }));
           dispatch(bagAction.addAll({ id: data.findUser.bag }));
+          dispatch(
+            OrderAction.addInitialOrder({ orders: data.findUser.orders })
+          );
         } else {
           logout();
           localStorage.setItem("loggedIn", false);
