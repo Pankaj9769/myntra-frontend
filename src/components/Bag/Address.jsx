@@ -67,7 +67,7 @@ const Address = () => {
         console.log("token->", token);
 
         const response = await fetch(
-          "https://myntra-frontend-tau.vercel.app/user/order/add",
+          "https://myntra-clone-backend-eight.vercel.app/user/order/add",
           {
             method: "POST",
             headers: {
@@ -79,7 +79,7 @@ const Address = () => {
         );
         if (response.ok) {
           const resp = await fetch(
-            "https://myntra-frontend-tau.vercel.app/user/bag/remove/all",
+            "https://myntra-clone-backend-eight.vercel.app/user/bag/remove/all",
             {
               method: "POST",
               headers: {
