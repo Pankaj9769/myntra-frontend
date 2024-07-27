@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import WishlistItem from "./WishlistItem.jsx";
 import { Context } from "../../store/Context.jsx";
 import { useNavigate } from "react-router-dom";
+import Empty from "../Empty.jsx";
 
 const Wishlist = () => {
   const navigate = useNavigate();
@@ -26,9 +27,13 @@ const Wishlist = () => {
 
   return (
     <div className="flex flex-row flex-wrap items-center justify-center gap-10 my-10">
-      {newList.map((product) => (
-        <WishlistItem key={product.id} item={product} />
-      ))}
+      {newList.length === 0 ? (
+        <Empty />
+      ) : (
+        newList.map((product) => (
+          <WishlistItem key={product.id} item={product} />
+        ))
+      )}
     </div>
   );
 };

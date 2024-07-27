@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const SideBar = ({ onPage }) => {
   const page = onPage;
   return (
@@ -7,20 +9,22 @@ const SideBar = ({ onPage }) => {
       </div>
       <div className="text-gray-600 py-4 flex flex-col gap-3 border-b-[1px] border-gray-300">
         <span className="uppercase text-xs text-gray-500">orders</span>
-        <a
+        <Link
+          to={"/order"}
           className={`text-md ${
-            page === "Orders" ? "text-[#03A685]" : "text-gray-600"
-          } font-bold cursor-pointer`}
+            page === "Orders" ? "text-[#03A685] font-bold" : "text-gray-600"
+          }  cursor-pointer`}
         >
           Orders & Returns
-        </a>
+        </Link>
       </div>
 
       <div className="text-gray-600 py-4 flex flex-col gap-3 border-b-[1px] border-gray-300">
         <span className="uppercase text-xs text-gray-500">Account</span>
         <ul>
           <li>
-            <a
+            <Link
+              to={"/order/profile"}
               className={`text-md ${
                 page === "Profile"
                   ? "text-[#03A685]  font-bold"
@@ -28,7 +32,7 @@ const SideBar = ({ onPage }) => {
               } cursor-pointer`}
             >
               Profile
-            </a>
+            </Link>
           </li>
           <li>
             <a

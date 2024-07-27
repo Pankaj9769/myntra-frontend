@@ -4,10 +4,13 @@ import { GoContainer } from "react-icons/go";
 import Rating from "./Rating";
 import DeliveredBox from "./DeliveredBox";
 import ExchangeWindow from "./ExchangeWindow";
+import { useContext } from "react";
+import { Context } from "../../store/Context";
 const OrderDetail = () => {
   const location = useLocation();
   const date = new Date();
-  const name = "Pankaj";
+  const { user } = useContext(Context);
+  const name = user.name;
   const item = location.state.item;
   console.log(location.state.item);
   const itemDate = new Date(item.date);
