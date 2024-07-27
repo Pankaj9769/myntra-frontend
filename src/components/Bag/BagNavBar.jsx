@@ -5,10 +5,7 @@ const BagNavBar = ({ page }) => {
   return (
     <>
       <nav className="w-full h-20 flex gap-10 md:gap-0 md:flex-row items-center  justify-between bg-white shadow-sm subpixel-antialiased">
-        <img
-          src="../../../src/assets/images/mnytra_logo.webp"
-          className="ml-11 w-16 h-12"
-        />
+        <img src="../images/mnytra_logo.webp" className="ml-11 w-16 h-12" />
         <div className="hidden md:flex flex-row uppercase text-[0.8rem] font-[500] tracking-[3px]  text-gray-400">
           <BagPageSlider page={page} />
         </div>
